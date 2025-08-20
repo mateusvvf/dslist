@@ -29,7 +29,11 @@ public class Game {
 	private String platforms;
 	private Double score;
 	private String imgUrl;
-	private String shortDescription;
+	
+	@Column(columnDefinition = "TEXT") // Por padrão, String vai para a tabela como 'varchar(255)'.
+	private String shortDescription; //   Portanto, convertemos campos com textos maiores para 'text'.
+	
+	@Column(columnDefinition = "TEXT")
 	private String longDescription;
 	
 	
