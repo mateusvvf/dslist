@@ -1,6 +1,7 @@
 package com.devsuperior.dslist.dto;
 
 import com.devsuperior.dslist.entities.Game;
+import com.devsuperior.dslist.projections.GameMinProjection;
 
 public class GameMinDTO { /* Versão resumida de Game. Mostra apenas o "essencial"/desejado no front-end
 
@@ -28,6 +29,20 @@ public class GameMinDTO { /* Versão resumida de Game. Mostra apenas o "essencia
 		shortDescription = entity.getShortDescription();
 	}
 
+	
+	
+	public GameMinDTO(GameMinProjection projection) { /* Construtor personalizado de acordo com uma projection
+														 (GameMinProjection) que, por sua vez, trabalha em função de uma query
+														 [ver 'Query' em GameRepository e ver GameMinProjection]  */
+
+	
+		id = projection.getId();
+		title = projection.getTitle();    
+		year = projection.getGameYear();      
+		imgUrl = projection.getImgUrl();
+		shortDescription = projection.getShortDescription();
+	}
+	
 	
 	
 	// Abaixo, nota-se que APENAS GETTERS são necessários no DTO:

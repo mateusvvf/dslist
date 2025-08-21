@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.devsuperior.dslist.dto.GameDTO;
 import com.devsuperior.dslist.dto.GameMinDTO;
 import com.devsuperior.dslist.entities.Game;
+import com.devsuperior.dslist.projections.GameMinProjection;
 import com.devsuperior.dslist.repositories.GameRepository;
 
 //       ou '@Component' -> Annotations necessários para a classe de serviços
@@ -51,6 +52,20 @@ public class GameService { /* Service, ou classe de serviço:
 		
 		return dto;
 		
+	}
+	
+	
+	@Transactional(readOnly = true)
+	public List<GameMinDTO> findByList(Long listId) { /* Método que retornará jogos que pertençam a uma lista específica
+	                                                     
+	                                                     - 'listId' define qual será a lista                                */
+		
+		List<GameMinProjection> result = gameRepository.searchByList(listId); 
+//                                                      ************ -----------> Método de uma query (busca personalizada)
+		
+		return result.stream().map(x -> new GameMinDTO(x)).toList();
+/*                                      ***************** ----------> Funciona pq GameMinDTO tem um construtor personalizado
+                                                                      para a projection GameMinProjection                   */		
 	}
 	
 	
