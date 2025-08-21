@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.devsuperior.dslist.dto.GameDTO;
 import com.devsuperior.dslist.dto.GameMinDTO;
 import com.devsuperior.dslist.services.GameService;
 
@@ -35,6 +37,14 @@ public class GameController {
 		return result;
 	}
 	
+	
+	@GetMapping(value = "/{id}") /* Chaves {} -> indicam que o caminho da requisição (/id) será um PARÂMETRO do método abaixo
+	                                             (a URL mudará de acordo com qual for a variável para acessar IDs diferentes)   */
+	
+	public GameDTO findById(@PathVariable Long id) { // @PathVariable indica que esse parâmetro é o usado na requisição/URL (ver acima)
+		GameDTO result = gameService.findById(id);
+		return result;
+	}
 	
 
 }
