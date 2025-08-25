@@ -29,7 +29,7 @@ public class GameService { /* Service, ou classe de serviço:
 	
 	@Transactional(readOnly = true) /*     *1: De 'transação' em Banco de Dados. Garante que ou tudo dá certo, ou nada ocorre.
 	      *1              *2               *2: Spring não abre uma transação de escrita sem necessidade -> mais performance 
-	                                           - Só usado em operações que busca e leitura.                                  */ 
+	                                           - Só usado em operações de busca e/ou leitura.                                  */ 
 											 
 	
 	public List<GameMinDTO> findAll() { // Método que retornará todos os itens da tabela usando a interface
